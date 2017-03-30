@@ -30,56 +30,15 @@ namespace acadPurgeBind
         // context menu.
 
         // Modal Command with localized name
-        [CommandMethod("MyGroup", "MyCommand", "MyCommandLocal", CommandFlags.Modal)]
-        public void MyCommand() // This method can have any name
+        [CommandMethod("MyGroup", "BlockAttList", CommandFlags.Modal)]
+        public void BlockAttList() // This method can have any name
         {
             // Put your command code here
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            Editor ed;
-            if (doc != null)
-            {
-                ed = doc.Editor;
-                ed.WriteMessage("Hello, this is your first command.");
-
-            }
+            ShowDialog();
         }
-
-        // Modal Command with pickfirst selection
-        [CommandMethod("MyGroup", "MyPickFirst", "MyPickFirstLocal", CommandFlags.Modal | CommandFlags.UsePickSet)]
-        public void MyPickFirst() // This method can have any name
+        public void ShowDialog()
         {
-            PromptSelectionResult result = Application.DocumentManager.MdiActiveDocument.Editor.GetSelection();
-            if (result.Status == PromptStatus.OK)
-            {
-                // There are selected entities
-                // Put your command using pickfirst set code here
-            }
-            else
-            {
-                // There are no selected entities
-                // Put your command code here
-            }
+
         }
-
-        // Application Session Command with localized name
-        [CommandMethod("MyGroup", "MySessionCmd", "MySessionCmdLocal", CommandFlags.Modal | CommandFlags.Session)]
-        public void MySessionCmd() // This method can have any name
-        {
-            // Put your command code here
-        }
-
-        // LispFunction is similar to CommandMethod but it creates a lisp 
-        // callable function. Many return types are supported not just string
-        // or integer.
-        [LispFunction("MyLispFunction", "MyLispFunctionLocal")]
-        public int MyLispFunction(ResultBuffer args) // This method can have any name
-        {
-            // Put your command code here
-
-            // Return a value to the AutoCAD Lisp Interpreter
-            return 1;
-        }
-
     }
-
 }
